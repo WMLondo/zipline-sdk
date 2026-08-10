@@ -1,0 +1,56 @@
+{
+  "name": "@wmlondo/zipline-sdk",
+  "version": "0.1.0",
+  "description": "A native TypeScript SDK for Zipline",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json && node scripts/copy-generated-types.mjs",
+    "test:watch": "vitest",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "pack:check": "npm run build && npm pack --dry-run --cache .npm-cache",
+    "generate:api": "mkdir -p src/generated && openapi-typescript https://zipline.diced.sh/openapi.json -o src/generated/zipline-api.d.ts",
+    "typecheck:test": "tsc --noEmit -p tsconfig.test.json",
+    "prepublishOnly": "npm run typecheck && npm run typecheck:test && npm test && npm run build"
+  },
+  "keywords": [
+    "zipline",
+    "sdk",
+    "typescript",
+    "file-upload"
+  ],
+  "author": "WMLondo",
+  "license": "MIT",
+  "type": "module",
+  "private": false,
+  "engines": {
+    "node": ">=24.18.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.2.0",
+    "eslint": "^10.8.1",
+    "openapi-typescript": "^7.13.0",
+    "prettier": "^3.9.6",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.67.0",
+    "vitest": "^4.1.10"
+  }
+}
