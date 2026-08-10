@@ -2,6 +2,7 @@ import type { ZiplineTransport } from "../transport.js";
 import type {
   CreateUrlParams,
   PasswordUrlParams,
+  UrlIdParams,
   UpdateUrlParams,
   ZiplineUrl,
   ZiplineUrlCreateResponse,
@@ -32,7 +33,7 @@ export class UrlsResource {
     });
   }
 
-  public get({ id }: { id: string }): Promise<ZiplineUrl> {
+  public get({ id }: UrlIdParams): Promise<ZiplineUrl> {
     return this.transport.request<ZiplineUrl>({
       method: "GET",
       path: `/user/urls/${encodeResourceId(id)}`,
@@ -50,7 +51,7 @@ export class UrlsResource {
     });
   }
 
-  public delete({ id }: { id: string }): Promise<ZiplineUrlDeleteResponse> {
+  public delete({ id }: UrlIdParams): Promise<ZiplineUrlDeleteResponse> {
     return this.transport.request<ZiplineUrlDeleteResponse>({
       method: "DELETE",
       path: `/user/urls/${encodeResourceId(id)}`,

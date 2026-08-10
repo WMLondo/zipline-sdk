@@ -167,12 +167,12 @@ export type ZiplineUploadOptions = {
   imageCompressionType?: ZiplineImageCompressionType;
   password?: string;
   maxViews?: number;
-  originalName?: boolean;
+  shouldPreserveOriginalName?: boolean;
   folderId?: string;
   filename?: string;
   domain?: string;
   fileExtension?: string;
-  noJson?: boolean;
+  shouldReturnPlainText?: boolean;
 };
 
 export type ZiplineUploadParams = {

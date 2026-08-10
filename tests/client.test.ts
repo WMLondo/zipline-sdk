@@ -75,7 +75,7 @@ describe("ZiplineClient", () => {
         { source: new Blob(["two"]), name: "two.txt", type: "text/plain" },
       ],
       folderId: "folder-id",
-      originalName: true,
+      shouldPreserveOriginalName: true,
       maxViews: 5,
     });
 
@@ -108,7 +108,7 @@ describe("ZiplineClient", () => {
     expect(headers.has("content-type")).toBe(false);
   });
 
-  it("should return plain text when noJson is enabled", async () => {
+  it("should return plain text when requested", async () => {
     const fetchMock = vi
       .fn<typeof fetch>()
       .mockResolvedValue(
@@ -121,7 +121,7 @@ describe("ZiplineClient", () => {
 
     const result = await client.files.upload({
       files: [{ source: new Uint8Array([1]), name: "file.bin" }],
-      noJson: true,
+      shouldReturnPlainText: true,
     });
 
     expect(result).toBe("https://zipline.test/file.png\n");

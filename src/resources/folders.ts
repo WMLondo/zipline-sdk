@@ -1,5 +1,6 @@
 import type { ZiplineTransport } from "../transport.js";
 import type {
+  FolderIdParams,
   GetFolderParams,
   MoveFolderParams,
   UpdateFolderParams,
@@ -56,7 +57,7 @@ export class FoldersResource {
     });
   }
 
-  public delete({ id }: { id: string }): Promise<ZiplineFolderDeleteResponse> {
+  public delete({ id }: FolderIdParams): Promise<ZiplineFolderDeleteResponse> {
     return this.transport.request<ZiplineFolderDeleteResponse>({
       method: "DELETE",
       path: `/user/folders/${encodeResourceId(id)}`,
@@ -74,7 +75,7 @@ export class FoldersResource {
     });
   }
 
-  public export({ id }: { id: string }): Promise<Blob> {
+  public export({ id }: FolderIdParams): Promise<Blob> {
     return this.transport.request<Blob>({
       method: "GET",
       path: `/user/folders/${encodeResourceId(id)}/export`,

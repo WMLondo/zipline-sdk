@@ -21,7 +21,7 @@ const ziplineClient = new ZiplineClient({
 const result = await ziplineClient.files.upload({
   files: ["./screenshots/example.png"],
   folderId: "folder-id",
-  originalName: true,
+  shouldPreserveOriginalName: true,
 });
 
 console.log(result.files[0]?.url);
@@ -45,12 +45,12 @@ Todos los métodos reciben un objeto y devuelven una `Promise` con tipos derivad
 - `client.urls`: list, create, get, update, delete y verificación de password.
 - `client.tags`: list, create, get, update y delete.
 
-El upload acepta rutas locales, `Uint8Array`, `Blob`, `File`, `ReadableStream` y async iterables. Para respuestas de upload en texto, usa `noJson: true`:
+El upload acepta rutas locales, `Uint8Array`, `Blob`, `File`, `ReadableStream` y async iterables. Para respuestas de upload en texto, usa `shouldReturnPlainText: true`:
 
 ```ts
 const urls = await ziplineClient.files.upload({
   files: [{ source: new Uint8Array([1, 2, 3]), name: "data.bin" }],
-  noJson: true,
+  shouldReturnPlainText: true,
 });
 ```
 

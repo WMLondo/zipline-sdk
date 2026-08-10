@@ -146,8 +146,10 @@ const createUploadHeaders = (
     headers["x-zipline-password"] = params.password;
   if (params.maxViews !== undefined)
     headers["x-zipline-max-views"] = String(params.maxViews);
-  if (params.originalName !== undefined)
-    headers["x-zipline-original-name"] = String(params.originalName);
+  if (params.shouldPreserveOriginalName !== undefined)
+    headers["x-zipline-original-name"] = String(
+      params.shouldPreserveOriginalName,
+    );
   if (params.folderId !== undefined)
     headers["x-zipline-folder"] = params.folderId;
   if (params.filename !== undefined)
@@ -155,8 +157,8 @@ const createUploadHeaders = (
   if (params.domain !== undefined) headers["x-zipline-domain"] = params.domain;
   if (params.fileExtension !== undefined)
     headers["x-zipline-file-extension"] = params.fileExtension;
-  if (params.noJson !== undefined)
-    headers["x-zipline-no-json"] = String(params.noJson);
+  if (params.shouldReturnPlainText !== undefined)
+    headers["x-zipline-no-json"] = String(params.shouldReturnPlainText);
 
   return headers;
 };
@@ -165,10 +167,10 @@ export class FilesResource {
   public constructor(private readonly transport: ZiplineTransport) {}
 
   public async upload(
-    params: ZiplineUploadParams & { noJson: true },
+    params: ZiplineUploadParams & { shouldReturnPlainText: true },
   ): Promise<string>;
   public async upload(
-    params: ZiplineUploadParams & { noJson?: false },
+    params: ZiplineUploadParams & { shouldReturnPlainText?: false },
   ): Promise<ZiplineUploadJsonResponse>;
   public async upload(
     params: ZiplineUploadParams,
@@ -191,7 +193,7 @@ export class FilesResource {
       path: "/upload",
       body: form,
       headers: createUploadHeaders(params),
-      responseType: params.noJson === true ? "text" : "json",
+      responseType: params.shouldReturnPlainText === true ? "text" : "json",
     });
   }
 

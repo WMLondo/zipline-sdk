@@ -1,6 +1,7 @@
 import type { ZiplineTransport } from "../transport.js";
 import type {
   CreateTagParams,
+  TagIdParams,
   UpdateTagParams,
   ZiplineTag,
   ZiplineTagCreateResponse,
@@ -28,7 +29,7 @@ export class TagsResource {
     });
   }
 
-  public get({ id }: { id: string }): Promise<ZiplineTag> {
+  public get({ id }: TagIdParams): Promise<ZiplineTag> {
     return this.transport.request<ZiplineTag>({
       method: "GET",
       path: `/user/tags/${encodeResourceId(id)}`,
@@ -46,7 +47,7 @@ export class TagsResource {
     });
   }
 
-  public delete({ id }: { id: string }): Promise<ZiplineTagDeleteResponse> {
+  public delete({ id }: TagIdParams): Promise<ZiplineTagDeleteResponse> {
     return this.transport.request<ZiplineTagDeleteResponse>({
       method: "DELETE",
       path: `/user/tags/${encodeResourceId(id)}`,
