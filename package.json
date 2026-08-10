@@ -1,5 +1,5 @@
 {
-  "name": "@wmlondo/zipline-sdk",
+  "name": "@pixydev/zipline-sdk",
   "version": "0.1.0",
   "description": "A native TypeScript SDK for Zipline",
   "exports": {
