@@ -1,17 +1,17 @@
-# @wmlondo/zipline-sdk
+# @pixydev/zipline-sdk
 
 SDK nativo de TypeScript para la API de [Zipline](https://zipline.diced.sh/), orientado a Node.js 24.18.0 o superior.
 
 ## Instalación
 
 ```bash
-npm install @wmlondo/zipline-sdk
+npm install @pixydev/zipline-sdk
 ```
 
 ## Uso rápido
 
 ```ts
-import { ZiplineClient } from "@wmlondo/zipline-sdk";
+import { ZiplineClient } from "@pixydev/zipline-sdk";
 
 const ziplineClient = new ZiplineClient({
   baseUrl: "https://zipline.example.com",
@@ -61,7 +61,7 @@ El método `files.raw` devuelve un `Blob`, y `folders.export` devuelve el ZIP co
 Las respuestas HTTP no exitosas lanzan `ZiplineApiError`:
 
 ```ts
-import { ZiplineApiError } from "@wmlondo/zipline-sdk";
+import { ZiplineApiError } from "@pixydev/zipline-sdk";
 
 try {
   await ziplineClient.files.get({ id: "missing-file" });
